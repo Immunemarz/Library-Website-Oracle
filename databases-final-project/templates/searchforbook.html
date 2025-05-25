@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel = 'stylesheet'  href = "{{ url_for('static', filename='index.css') }}" />
+    <title>Search for Book</title>
+</head>
+<body>
+<div class = "container">
+  <img src="/static/purplebanner.jpg" alt = "purple banner" class = "purplebanner">
+  
+  <div class = "topText">
+  <h2 class="stonehillCompSci"> Ryan & Ryan Library Services </h2>
+  </div>
+
+
+
+
+
+
+
+
+
+<div class = "navigation">
+    <nav>
+    <ul class = "links">
+      <li><a href ="/">Sign Out</a></li>
+      <li>
+        <a href = "https://libguides.stonehill.edu/groupstudyrooms">Book a Study Room</a>
+      </li>
+      <li><a href ="link here">Account</a>
+        <ul class = "dropdown">
+          <li><a href="/deletebook">Delete Book</a></li><!-- NEED TO ADD FUNCTIONALITY TO THESE!!!-->
+          <li><a href="/favoritebooks">Favorite Books</a></li>
+          <li><a href="http://web.stonehill.edu/compsci/shai.htm">Shai</a></li>
+        </ul>
+      </li>
+   
+
+
+    </ul>
+    </nav>
+
+
+    
+  </div>
+</div>
+    <div class="newcontainer">
+        <div class="search-bar">
+            <form action="/search" method="post">
+                <input type="text" name="query" placeholder="Search for books...">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+        <h1>Search Result:</h1>
+        <div class="searchbookinfo">
+            {% if result.title is string %}
+                <img src="{{result.thumbnail}}">
+                <div>
+                    <h2>
+                        Title: {{result.title|upper}} <br>
+                        Author: {{result.author}}<br>
+                        Category: {{result.category}}<br>
+                        Pages: {{result.pages}}<br>
+                        Rating: {{result.rating}}
+                    </h2>
+                </div>
+            {% else %}
+                <p>No results found.</p>
+            {% endif %}
+        </div>
+
+        <form action="/add_to_library" method="post">
+            <input type="hidden" name="isbn" value="{{result.isbn}}">
+            <input type="submit" class = "addtolibrary" value="Add to my Library!">
+        </form>
+        <div class = "center">
+        <a href="/home" class = "linkforback">Back to Your Books</a>
+        </div>
+        <h1>Previous Searches</h1>
+
+        <form action="/select_book" method="post">
+            {% for book in result_list|reverse %}
+                <div class="newbook">
+                     <input type="image" src="{{book['thumbnail']}}" alt="Submit">
+                     <input type="hidden" name="chosenbook" value="{{book['isbn']}}">    
+                   <!-- <label for="{{book['isbn']}}">
+                        <img src="{{book['thumbnail']}}" alt="image">
+                    </label>
+                    -->
+                </div>
+            {% endfor %}
+        </form>
+
+    </div>
+
+</body>
+</html>

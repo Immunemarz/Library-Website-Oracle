@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+    <link rel = 'stylesheet'  href = "{{ url_for('static', filename='index.css') }}" />
+    <title>Favorite Books</title>
+</head>
+<body>
+<div class = "container">
+  <img src="/static/purplebanner.jpg" alt = "purple banner" class = "purplebanner">
+  
+  <div class = "topText">
+    <h2 class="stonehillCompSci"> &emsp;Your Favorite Books </h2>
+  </div>
+
+<div class = "navigation">
+    <nav>
+    <ul class = "links">
+      <li><a href ="/">Sign Out</a></li>
+      <li>
+        <a href = "https://libguides.stonehill.edu/groupstudyrooms">Book a Study Room</a>
+      </li>
+      <li><a href ="link here">Account</a>
+        <ul class = "dropdown">
+          <li><a href="/deletebook">Delete Book</a></li><!-- NEED TO ADD FUNCTIONALITY TO THESE!!!-->
+          <li><a href="/favoritebooks">Favorite Books</a></li>
+          <li><a href="/home">Home</a></li>
+        </ul>
+      </li>
+   
+
+
+    </ul>
+    </nav>
+
+
+    
+  </div>
+</div>
+
+
+
+	<h1 class = "books"> Your Favorited Books: </h1>
+		<form action="/select_book" method="post">
+			<div class="book-container">
+				{% for book in thumbnails %}
+				<form action="/select_book" method="post">
+					<div class="book">
+						
+						<input type="image" src="{{book.thumbnail}}" alt="Submit">
+                     	<input type="hidden" name= "chosenbook" value="{{book.isbn}}">  
+					
+					</div>
+					</form>
+				{% endfor %}
+			</div>
+		
+	<div class="center">
+    <a href="/home" class="backtohome">Back to Home</a>
+	</div>
+
+
+
+</body>
+</html>

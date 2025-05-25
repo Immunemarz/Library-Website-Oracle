@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Delete Book</title>
+        <link rel = 'stylesheet'  href = "{{ url_for('static', filename='index.css') }}" >
+    </head>
+    <body class = "loginbody">
+		<h1 class = "deletetext"> Choose a Book to Delete</h1>
+		
+		{% for book in all_books %}
+        <form action="/deletebook" method="post">
+		 <div class="newbook">
+			<input type="image" src="{{book.thumbnail}}" alt="Submit">
+			<input type="hidden" name="chosenbook" value="{{book.isbn}}">    
+                <div>
+                    <h2>
+                        &emsp;Title: {{book.title|upper}} <br>
+                        &emsp;Author: {{book.author}}<br>
+                        &emsp;Category: {{book.category}}<br>
+                        &emsp;Pages: {{book.pages}}<br>
+                        &emsp;Rating: {{book.rating}}
+                    </h2>
+                </div>
+		 </div>
+         </form>
+		{% endfor %}
+		
+        	<div class="center">
+                <a href="/home" class="backtohome">Back to Home</a>
+            </div>
+    </body>
+</html>

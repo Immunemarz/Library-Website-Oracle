@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>{{book.title}}</title>
+        <link rel = 'stylesheet'  href = "{{ url_for('static', filename='index.css') }}" >
+    </head>
+    <body class = "loginbody">
+  <div class="infocontainer">
+           
+            <img src = "{{book.thumbnail}}" alt = "book thumbnail">
+            <div class="book-info">
+                <h1 class = "bookinfotext">ISBN: {{book.isbn}}</h1>
+                <h1 class = "bookinfotext">Title: {{book.title}}</h1>
+                <h1 class = "bookinfotext">Author: {{book.author}}</h1>
+                <h1 class = "bookinfotext">Description: {{book.description}}</h1>
+                <h1 class = "bookinfotext">Category: {{book.category}}</h1>
+                <h1 class = "bookinfotext">Rating: {{book.rating}}</h1>
+                <h1 class = "bookinfotext">Pages: {{book.pages}}</h1>
+            </div>
+
+
+        </div>
+            <form action="/favoritebook" method="post">
+                <input type="submit" class="favorite-button" name = "chosenbook" value="Favorite/Unfavorite Book">
+            </form>
+            <div class="center">
+                <a href="/home" class="backtohome">Back to Home</a>
+            </div>
+    </body>
+</html>

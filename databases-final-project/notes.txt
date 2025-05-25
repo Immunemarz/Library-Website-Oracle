@@ -1,0 +1,57 @@
+      <h1>First Name: {{first_book.isbn}}</h1>
+      <h1>Last Name: {{first_book.title}}</h1>
+      <h1>Address: {{first_book.author}}</h1>
+      <h1>City: {{first_book.description}}</h1>
+      <h1>State: {{first_book.category}}</h1>
+      <h1>Zip Code: <input type="image" src="{{first_book.thumbnail}}" alt="Submit" /></h1>
+      <h1>Phone Number: {{first_book.rating}}</h1>
+      <h1>Email: {{first_book.pages}}</h1>
+
+
+
+
+	  
+		{% for books in all_books %}
+		    <ul>
+      			<li><h2><input type="radio"  class = "radiobuttons" name="book" value="{{books.isbn}}"/>{{books.title}} {{books.author}} {{books.pages}} {{books.rating}}<br></h2></li>
+   			</ul>
+			<div class = "openemaildiv">
+        		<input type="submit" class = "modifyuserbutton"  value="Modify User">
+      		</div>
+		{% endfor %}
+
+
+Search bar: Make a search thats just a normal form text box then write a method in the dao that selects by title and print the results also have 3 recommended books
+
+
+
+
+@app.route('/add_to_library', methods = ['GET','POST'])
+def add_to_library():
+
+	isbn = request.form.get('isbn')
+	dao = Userdao()
+	ownedbooks = Ownedbooksdao()
+	get_account = decode(session['email'])
+	all_user_books = ownedbooks.selectAll(get_account)
+	if(isbn in all_user_books.isbn):
+		return redirect(url_for('search')) #do javascript to put warning box maybe
+	
+	user = dao.selectByEmail(get_account)
+	user_books = []
+	print('GET ACCOUNT.BOOKS:',user.books)
+	if user.books:
+		user_books = [isbn.strip() for isbn in user.books.split(',') if isbn.strip()]
+
+	if str(isbn).strip():  
+		user_books.append(str(isbn).strip())
+
+	user_books_str = ','.join(user_books)
+	
+
+
+	print('user books is:',user_books_str)
+	account = User(user.user,user.password,user.book_by_isbn,user_books_str)
+	print(f'new account: {account}')
+	dao.update(account)
+	return redirect(url_for('search'))

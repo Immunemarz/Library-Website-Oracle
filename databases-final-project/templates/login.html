@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang = "en">
+<head>
+    <title>Please Login</title>
+    <link rel = 'stylesheet'  href = "{{ url_for('static', filename='index.css') }}" />
+</head>
+<body class = "loginbody">
+  <h1 class="logintext">Login</h1>
+
+  <form id="form" method="POST" action="/login">  
+    <p class="logintext">Email: <input type="text" class="loginboxtext" name="email" /></p>
+    <p class="logintext">Password: <input type="password" class="loginboxtext" name="pass" /></p>
+    <input type="submit" name="submit" class="loginbutton" value="Login!"/>
+  </form>
+
+  <form action="/registeruser" method="post">
+    <input type="submit" name="CreateUser" class="createbutton" value="Create User">
+  </form>
+</body>
+</html>

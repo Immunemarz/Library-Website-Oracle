@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+    <link rel = 'stylesheet'  href = "{{ url_for('static', filename='index.css') }}" />
+    <title>Welcome To Your Home View</title>
+</head>
+<body>
+<div class = "container">
+  <img src="/static/purplebanner.jpg" alt = "purple banner" class = "purplebanner">
+  
+  <div class = "topText">
+  <h2 class="stonehillCompSci"> Ryan & Ryan Library Services </h2>
+  </div>
+
+<div class = "navigation">
+    <nav>
+    <ul class = "links">
+      <li><a href ="/">Sign Out</a></li>
+      <li>
+        <a href = "https://libguides.stonehill.edu/groupstudyrooms">Book a Study Room</a>
+      </li>
+      <li><a href ="link here">Account</a>
+        <ul class = "dropdown">
+          <li><a href="/deletebook">Delete Book</a></li><!-- NEED TO ADD FUNCTIONALITY TO THESE!!!-->
+          <li><a href="/favoritebooks">Favorite Books</a></li>
+          <li><a href="http://web.stonehill.edu/compsci/shai.htm">Shai</a></li>
+        </ul>
+      </li>
+   
+
+
+    </ul>
+    </nav>
+
+
+    
+  </div>
+</div>
+
+<!--
+    <div class="header">
+        <img src="/static/r2library.jpg" alt="Logo" class = "imageheader"> 
+		<a href="https://libguides.stonehill.edu/groupstudyrooms">
+			<img src="/static/room.png" alt="Book a study room!" class="studyroom">
+			<h2>Book a study Room</h2>
+		</a>
+		
+		<a href="https://libguides.stonehill.edu/TutoringServices">
+            <img src="/static/room.png" alt="Book a study room!" class="studyroom">
+		</a>
+		<a href="https://www.jstor.org/">
+            <img src="/static/room.png" alt="Book a study room!" class="studyroom">
+		</a>
+        
+
+
+    </div>
+-->
+        
+
+	<br>
+
+	<h1 class = "books"> Your Books: </h1>
+    <form id="form" method="post">
+        <div class="book-container">
+            {% for book in all_books %}
+                <div class="book">
+                    <input type="submit" id="{{book.isbn}}" class="radiobuttons" name="chosenbook" value="{{book.isbn}}">
+                    <label for="{{book.isbn}}">
+                        <img src="{{book.thumbnail}}" alt="image">
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+	<div class="center-screen">
+        <form action="/search" method = "post">
+            <input type="submit" class="cool-button" value="Go to Search for a Book">
+        </form>
+    </div>
+    
+    <br>
+
+
+    <div class="featured-news">
+        📚 Featured News 📚
+    </div>
+
+
+
+
+<img src="/static/downarrow.png" class = "downarrow" alt = "down arrow">
+
+
+<h1 class = "peoplesaying">Students Create Software Program to Benefit Local School for the Blind</h1>
+
+
+<img src="/static/Perkins.jpg" class = "perkins" alt = "picture of stonehill helping perkins students">
+
+<p class = "perkinstext">Students from the Perkins School for the Blind in Watertown are more independent thanks to a new fully accessible time tracking system designed 
+and implemented by Stonehill students. Last semester, seven computer science majors along with two interdisciplinary studies majors concentrating in technology, 
+worked on the project as part of their Senior Capstone. From coding the program to writing a 220 page user manual, the students developed every 
+aspect of the project which allows Perkins' students to record their work and volunteer hours electronically. Over the summer, Matt Plummer '15 worked closely with Perkins on 
+implementing the program, a tough but rewarding and practical learning experience. For more, visit <a href = "http://www.stonehill.edu/news-media/news/details/students-create-software-program-to-benefit-local-school-for-the-blind/">here.</a></p>
+
+
+<h1 class = "peoplesaying">Stonehill Alumni Are Thriving on the Frontier of the Internet Economy</h1>
+
+<img src="/static/index01.jpg" class = "techpic" alt = "picture of technology">
+
+<p class="perkinstext">Jen Burge '04 is used to the Mark Zuckerberg question. A software engineer at Facebook for the past five years, 
+it seems everyone who hears where she works wants to know if she's met the 30-year-old 
+billionaire and Facebook founder. "I see him around campus occasionally," she usually replies, referring to the social media company's sprawling California headquarters.
+Being at a high-profile company where the boss is famous might be what intrigues others but for Jen the thrill comes from being able to apply her computer 
+science skills in a way that helps the stars in her own life. "My favorite thing about my job is getting to work on a product my friends and family use every day,
+" Jen says. "I enjoy knowing that the stuff I do helps so many people stay connected with the people they care about."
+<a href = "http://www.stonehill.edu/news-media/news/details/stonehill-alumni-are-thriving-on-the-frontier-of-the-internet-economy/">Read More</a></p>
+
+
+<h1 class = "peoplesaying">Students Create Interactive Mobile Touring App</h1>
+
+<img src="/static/gaido.jpg" class = "gaido" alt = "picture of the app they built">
+
+<p class = "perkinstext">
+As it looked for new ways of reaching prospective students, the Enrollment Management and Marketing Division approached computer 
+science majors Ryan Curtis '10 and Scott Markoski '10 for ideas. 
+The end result was Gaido, a one-of-a-kind touring application smart phone owners can utilize for unique, 
+interactive experiences. <a href = "http://web.stonehill.edu/compsci/Gaido.htm">Read More</a></p>
+
+
+<h1 class = "peoplesaying">Stonehill computer science team takes first place at CCSNE programming competition. </h1>
+<img src="/static/programming.jpg" class = "programming" alt = "picture of programming">
+<p class = "newperktext">&emsp;Read more about this feat <a href = "http://web.stonehill.edu/compsci/contest.htm">here</a></p>
+
+
+<h1 class = "newpeoplesaying">CS Major and chess champion Jesse Suero in the Alumni Magazine</h1>
+<img src="/static/jesse.jpg" class = "jesse" alt = "picture of jesse harmon">
+<p class = "newperktext"> &emsp; Read more about this feat <a href = "http://web.stonehill.edu/compsci/Jesse.htm">here</a></p>
+
+
+<h1 class = "newpeoplesaying">Stonehill Senior Wins National Science Foundation Graduate Research Fellowship </h1>
+<img src="/static/natscience.jpg" class = "gaido" alt = "picture of nsf">
+<p class = "perkinstext">From more than 9000 applicants, the National Science Foundation recently awarded 1021 graduate research fellowships, 
+including 77 including in computer science. <a href = "http://web.stonehill.edu/compsci/luce.htm">Read more</a></p>
+
+
+<h1 class = "newpeoplesaying">Stonehill Receives Clare Boothe Luce Grant for CS Scholarships</h1>
+<img src="/static/clarebooth.jpg" class = "clarebooth" alt = "picture of nsf">
+<p class = "perkinstext">The The Henry Luce Foundation  recently awarded Stonehill College a grant of $101,224 
+designated for computer science scholarships.  This grant, which is part of the Clare Boothe Luce Program,  
+will  fund for two undergraduate scholarships for highly qualified female students who are computer science majors. 
+Stonehill is one of only eighteen colleges and universities selected by the Clare Boothe Luce Program for awards in 2001. <a href = "http://web.stonehill.edu/compsci/luce.htm">Read more</a></p>
+
+
+<h1 class = "newpeoplesaying">Stonehill Professors receive 158K grant from the National Science Foundation</h1>
+<img src="/static/grants.jpg" class = "grants" alt = "picture of grants">
+<p class = "perkinstext">Professors Ralph Bravaco and  Shai Simonson, both of the Department of Computer Science, have received notification 
+from the National Science Foundation that their Teacher Enhancement proposal, Java and Object Oriented Design:  Professional Development for 
+Secondary School Computer Science Teachers, has received funding.  The grant of $158,368 will provide a series of workshops for secondary school 
+teachers of computer science over a two-year period. The topic of the workshops will be Java and Object Oriented Programming.  In a
+ddition to serving a core group of twenty-five local high school teachers, the project will feature a regional conference and the development and dissemination of 
+instructional materials. <a href = "http://web.stonehill.edu/compsci/NSFWorkshop/flyer.htm">Read more</a> about the program</p>
+
+
+
+
+
+
+</div>
+
+
+
+</body>
+</html>
